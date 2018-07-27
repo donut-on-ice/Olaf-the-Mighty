@@ -5,7 +5,7 @@ AnimationClip:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Card_1_discard
+  m_Name: Card_1_discard_newer
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -36,7 +36,7 @@ AnimationClip:
         outWeight: {x: 0.33333334, y: 0.33333334, z: 0.33333334}
       - serializedVersion: 3
         time: 0.5833333
-        value: {x: 0, y: 0, z: 140}
+        value: {x: 0, y: 0, z: 140.74074}
         inSlope: {x: 0, y: 0, z: -380.00003}
         outSlope: {x: 0, y: 0, z: -380.00003}
         tangentMode: 0
@@ -462,7 +462,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.5833333
-        value: 140
+        value: 140.74074
         inSlope: -380.00003
         outSlope: -380.00003
         tangentMode: 136

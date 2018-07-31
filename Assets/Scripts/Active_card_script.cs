@@ -5,15 +5,15 @@ using UnityEngine;
 public class Active_card_script : MonoBehaviour
 {
 
-    private Animator animator1;
+    private Animator animator;
 
     private int state = 0;
     public bool paused;					// might need private
 
     void Start()
     {
-        animator1 = GetComponent<Animator>();
-		animator1.Play("Card_1_idle_deck");
+        animator = GetComponent<Animator>();
+		animator.Play("Card_1_idle_deck");
 
 		state = 0;
         paused = true;
@@ -25,51 +25,55 @@ public class Active_card_script : MonoBehaviour
         switch (state)
         {
             case 0:
-                if (!animator1.GetCurrentAnimatorStateInfo(0).IsName("Card_1_draw"))
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_1_draw"))
                 {
                     if(paused) Pause();
-                    animator1.Play("Card_1_draw");
+                    animator.Play("Card_1_draw");
                 }
 				++state;
                 break;
 
             case 1:
-                if (!animator1.GetCurrentAnimatorStateInfo(0).IsName("Card_1_draw"))
+                if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_1_draw"))
                 {
-                    animator1.Play("Card_1_idle_table");
+                    animator.Play("Card_1_idle_table");
                     if (!paused) Pause();
-                    if (Input.GetKeyDown(KeyCode.Space))
+                    if (Input.GetMouseButtonDown(0))
                     {
-                        //Pause();		// unpauses
                         ++state;
                     }
                 }
                 break;
 
             case 2:
-				if (!animator1.GetCurrentAnimatorStateInfo(0).IsName("Card_1_discard"))
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_1_discard"))
 				{
 					if(paused) Pause();
-					animator1.Play("Card_1_discard");
+					animator.Play("Card_1_discard");
 				}
 				++state;
 				break;
 
             case 3:
-				if (!animator1.GetCurrentAnimatorStateInfo(0).IsName("Card_1_discard"))
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_1_discard"))
 				{
-					animator1.Play("Card_1_idle_deck");
+					animator.Play("Card_1_idle_deck");
 					if (!paused) Pause();
-					if (Input.GetKeyDown(KeyCode.Space))
+
+					// on click
+					/*if (Input.GetMouseButtonDown(0))
 					{
-						//Pause();		// unpauses
 						state = 0;
-					}
+					}*/
+
+					// auto
+					state = 0;
 				}
 				break;
         }
 	}
     
+
 
     public void Pause()
     {

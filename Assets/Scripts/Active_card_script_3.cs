@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class Active_card_script_3 : MonoBehaviour
 {
-	private Animator animator3;
+	private Animator animator;
 
 	private int state = 0;
 	public bool paused;
 
 	void Start()
 	{
-		animator3 = GetComponent<Animator>();
-		animator3.Play("Card_3_idle_deck");
+		animator = GetComponent<Animator>();
+		animator.Play("Card_3_idle_deck");
 
 		state = 0;
 		paused = true;
@@ -24,50 +24,55 @@ public class Active_card_script_3 : MonoBehaviour
 		switch (state)
 		{
 			case 0:
-				if (!animator3.GetCurrentAnimatorStateInfo(0).IsName("Card_3_draw"))
+				//System.Threading.Thread.Sleep(2000);
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_3_draw"))
 				{
 					if (paused) Pause();
-					animator3.Play("Card_3_draw");
+					animator.Play("Card_3_draw");
 				}
 				++state;
 				break;
 
 			case 1:
-				if (!animator3.GetCurrentAnimatorStateInfo(0).IsName("Card_3_draw"))
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_3_draw"))
 				{
-					animator3.Play("Card_3_idle_table");
+					animator.Play("Card_3_idle_table");
 					if (!paused) Pause();
-					if (Input.GetKeyDown(KeyCode.Space))
+					if (Input.GetMouseButtonDown(0))
 					{
-						//Pause();		// unpauses
 						++state;
 					}
 				}
 				break;
 
 			case 2:
-				if (!animator3.GetCurrentAnimatorStateInfo(0).IsName("Card_3_discard"))
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_3_discard"))
 				{
 					if (paused) Pause();
-					animator3.Play("Card_3_discard");
+					animator.Play("Card_3_discard");
 				}
 				++state;
 				break;
 
 			case 3:
-				if (!animator3.GetCurrentAnimatorStateInfo(0).IsName("Card_3_discard"))
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_3_discard"))
 				{
-					animator3.Play("Card_3_idle_deck");
+					animator.Play("Card_3_idle_deck");
 					if (!paused) Pause();
-					if (Input.GetKeyDown(KeyCode.Space))
+
+					// on click
+					/*if (Input.GetMouseButtonDown(0))
 					{
-						//Pause();		// unpauses
 						state = 0;
-					}
+					}*/
+
+					// auto
+					state = 0;
 				}
 				break;
 		}
 	}
+
 
 
 	public void Pause()

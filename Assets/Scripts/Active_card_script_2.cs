@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Active_card_script_2 : MonoBehaviour
 {
-	private Animator animator2;
+	private Animator animator;
 
 	private int state = 0;
 	public bool paused;
+	//private float timer = 0, timerMax = 0;
 
 	void Start()
 	{
-		animator2 = GetComponent<Animator>();
-		animator2.Play("Card_2_idle_deck");
+		animator = GetComponent<Animator>();
+		animator.Play("Card_2_idle_deck");
 
 		state = 0;
 		paused = true;
@@ -24,51 +25,74 @@ public class Active_card_script_2 : MonoBehaviour
 		switch (state)
 		{
 			case 0:
-				if (!animator2.GetCurrentAnimatorStateInfo(0).IsName("Card_2_draw"))
+				//if (!Waited(1)) return;
+				//StartCoroutine(WaitABit());
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_2_draw"))
 				{
 					if (paused) Pause();
-					animator2.Play("Card_2_draw");
+					animator.Play("Card_2_draw");
 				}
 				++state;
 				break;
 
 			case 1:
-				if (!animator2.GetCurrentAnimatorStateInfo(0).IsName("Card_2_draw"))
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_2_draw"))
 				{
-					animator2.Play("Card_2_idle_table");
+					animator.Play("Card_2_idle_table");
 					if (!paused) Pause();
-					if (Input.GetKeyDown(KeyCode.Space))
+					if (Input.GetMouseButtonDown(0))
 					{
-						//Pause();		// unpauses
 						++state;
 					}
 				}
 				break;
 
 			case 2:
-				if (!animator2.GetCurrentAnimatorStateInfo(0).IsName("Card_2_discard"))
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_2_discard"))
 				{
 					if (paused) Pause();
-					animator2.Play("Card_2_discard");
+					animator.Play("Card_2_discard");
 				}
 				++state;
 				break;
 
 			case 3:
-				if (!animator2.GetCurrentAnimatorStateInfo(0).IsName("Card_2_discard"))
+				if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Card_2_discard"))
 				{
-					animator2.Play("Card_2_idle_deck");
+					animator.Play("Card_2_idle_deck");
 					if (!paused) Pause();
-					if (Input.GetKeyDown(KeyCode.Space))
+
+					// on click
+					/*if (Input.GetMouseButtonDown(0))
 					{
-						//Pause();		// unpauses
 						state = 0;
-					}
+					}*/
+
+					// auto
+					state = 0;
 				}
 				break;
 		}
 	}
 
+	/*private bool Waited(float seconds)
+	{
+		timerMax = seconds;
+
+		timer += Time.deltaTime;
+
+		if (timer >= timerMax)
+		{
+			return true; //max reached - waited x - seconds
+		}
+
+		return false;
+	}*/
+
+	/*private IEnumerator WaitABit()
+	{
+		yield return new WaitForSeconds(3.0f);
+	}*/
 
 	public void Pause()
 	{
@@ -82,5 +106,10 @@ public class Active_card_script_2 : MonoBehaviour
 			Time.timeScale = 1;
 		}
 	}
+
+	/*private void OnMouseDown()
+	{
+		state = 0;
+	}*/
 
 }

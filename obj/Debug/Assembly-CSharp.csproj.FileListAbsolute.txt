@@ -1,2 +1,0 @@
-E:\Stefan\Lucru\RGD\Olaf-the-Mighty\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
-E:\Stefan\Lucru\RGD\Olaf-the-Mighty\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

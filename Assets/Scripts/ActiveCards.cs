@@ -392,8 +392,8 @@ public class ActiveCards : MonoBehaviour
             cardMiddle.GetComponent<Animator>().SetBool("AllSet", true);
             cardRight.GetComponent<Animator>().SetBool("AllSet", true);
         }
-        
-        if (Input.GetMouseButtonDown(0)
+
+		/*if (Input.GetMouseButtonDown(0)
                 && cardLeft.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName(IDLE_TABLE)
                 && cardMiddle.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName(IDLE_TABLE)
                 && cardRight.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName(IDLE_TABLE))
@@ -401,10 +401,60 @@ public class ActiveCards : MonoBehaviour
             cardLeft.GetComponent<Animator>().SetBool("ToDiscard", true);
             cardMiddle.GetComponent<Animator>().SetBool("ToDiscard", true);
             cardRight.GetComponent<Animator>().SetBool("ToDiscard", true);
-        }
-    }
+        }*/
 
-    public class GameEvent
+		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+		if (Physics.Raycast(ray, out hit))
+		{
+			//print(hit.collider.name);
+			if(hit.collider.name == faceLeft.name) {
+
+				// stuff on hover 
+
+				if(Input.GetMouseButtonDown(0))
+				{	
+					//stuff on click
+
+					cardLeft.GetComponent<Animator>().SetBool("ToDiscard", true);
+					cardMiddle.GetComponent<Animator>().SetBool("ToDiscard", true);
+					cardRight.GetComponent<Animator>().SetBool("ToDiscard", true);
+				}
+			}
+			if (hit.collider.name == faceMiddle.name)
+			{
+
+				// stuff on hover 
+
+				if (Input.GetMouseButtonDown(0))
+				{
+					//stuff on click
+
+					cardLeft.GetComponent<Animator>().SetBool("ToDiscard", true);
+					cardMiddle.GetComponent<Animator>().SetBool("ToDiscard", true);
+					cardRight.GetComponent<Animator>().SetBool("ToDiscard", true);
+				}
+			}
+			if (hit.collider.name == faceRight.name)
+			{
+
+				// stuff on hover 
+
+				if (Input.GetMouseButtonDown(0))
+				{
+					//stuff on click
+
+					cardLeft.GetComponent<Animator>().SetBool("ToDiscard", true);
+					cardMiddle.GetComponent<Animator>().SetBool("ToDiscard", true);
+					cardRight.GetComponent<Animator>().SetBool("ToDiscard", true);
+				}
+			}
+		}
+	}
+
+	Ray ray;
+	RaycastHit hit;
+
+	public class GameEvent
     {
         public int ArmySize { get; set; }
         public int ArmyMorale { get; set; }

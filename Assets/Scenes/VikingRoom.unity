@@ -1557,14 +1557,14 @@ TextMesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 465034642}
-  m_Text: Honor
+  m_Text: Honour
   m_OffsetZ: 0
   m_CharacterSize: 0.5
   m_LineSpacing: 1
   m_Anchor: 1
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 28
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 6845e7f04c7f2e94ebce096a145cf935, type: 3}
@@ -3668,7 +3668,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 28
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 6845e7f04c7f2e94ebce096a145cf935, type: 3}
@@ -5981,7 +5981,7 @@ TextMesh:
   m_Anchor: 1
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 30
+  m_FontSize: 28
   m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 6845e7f04c7f2e94ebce096a145cf935, type: 3}

@@ -67,7 +67,7 @@
     <Compile Include="Assets\Scripts\Scroll.cs" />
     <Compile Include="Assets\Scripts\StatusTablet.cs" />
     <None Include="Assets\Materials\Wood texture floor_01\readme.txt" />
-    <None Include="Assets\Materials\Fonts\3DText.shader" />
+    <None Include="Assets\Resources\Fonts\3DText.shader" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/user/Documents/Olaf-the-Mighty/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>

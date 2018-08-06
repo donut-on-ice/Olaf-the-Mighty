@@ -49,8 +49,8 @@ public class ActiveCards : MonoBehaviour
 
             "Trade", "Local Market",
 
-            "The Nearby villagers\n" +
-            "have gathered to Sale\n" +
+            "The nearby villagers\n" +
+            "have gathered to sell\n" +
             "their goods.",
 
             "Bought some" +
@@ -63,9 +63,9 @@ public class ActiveCards : MonoBehaviour
             "Axes", "Outlaws",
 
             "Some criminals want\n" +
-            "to redeeem themselves\n" +
+            "to redeem themselves\n" +
             "in the upcoming raid.\n" +
-            "Still your men may\n" +
+            "Still, your men may\n" +
             "not be too keen about\n" +
             "it.",
 
@@ -78,9 +78,9 @@ public class ActiveCards : MonoBehaviour
             "Axes", "Outlaws",
 
             "Some criminals want\n" +
-            "to redeeem themselves\n" +
+            "to redeem themselves\n" +
             "in the upcoming raid.\n" +
-            "Still your men may\n" +
+            "Still, your men may\n" +
             "not be too keen about\n" +
             "it.",
 
@@ -93,9 +93,9 @@ public class ActiveCards : MonoBehaviour
             "Axes", "Outlaws",
 
             "Some criminals want\n" +
-            "to redeeem themselves\n" +
+            "to redeem themselves\n" +
             "in the upcoming raid.\n" +
-            "Still your men may\n" +
+            "Still, your men may\n" +
             "not be too keen about\n" +
             "it.",
 
@@ -105,40 +105,40 @@ public class ActiveCards : MonoBehaviour
 
     /* 005 */new GameEvent(3, 0, 0, -15,
 
-            "Swords", "Merchenaries",
+            "Swords", "Mercenaries",
 
             "Old and fearsome\n" +
-            "worriors answered the" +
+            "warriors answered the" +
             "call to arms. They won't\n" +
-            "be cheep.\n",
+            "be cheap.\n",
 
-            "Hired Merchenaries",
+            "Hired Mercenaries",
 
             2, 0),
 
     /* 006 */new GameEvent(4, 0, 0, -20,
 
-            "Swords", "Merchenaries",
+            "Swords", "Mercenaries",
 
             "Old and fearsome\n" +
-            "worriors answered the" +
+            "warriors answered the" +
             "call to arms. They won't\n" +
-            "be cheep.\n",
+            "be cheap.\n",
 
-            "Hired Merchenaries",
+            "Hired Mercenaries",
 
             2, 0),
 
     /* 007 */new GameEvent(5, 0, 0, -25,
 
-            "Swords", "Merchenaries",
+            "Swords", "Mercenaries",
 
             "Old and fearsome\n" +
-            "worriors answered the" +
+            "warriors answered the" +
             "call to arms. They won't\n" +
-            "be cheep.\n",
+            "be cheap.\n",
 
-            "Hired Merchenaries",
+            "Hired Mercenaries",
 
             2, 0),
 
@@ -148,7 +148,7 @@ public class ActiveCards : MonoBehaviour
 
             "Eldric, the new\n" +
             "champion of Ultah\n" +
-            "wants yo join your\n" +
+            "wants to join your\n" +
             "ranks. Your men think\n" +
             "highly of him\n",
 
@@ -178,11 +178,11 @@ public class ActiveCards : MonoBehaviour
             "Raid", "Christian Church",
 
             "Even though most of\n" +
-            "us are Christians\n" +
-            "this saxon church\n" +
+            "us are Christians,\n" +
+            "this Saxon church\n" +
             "holds many riches,\n" +
             "too many for a man of\n" +
-            "the God.",
+            "God.",
 
             "Raided some\n" +
             "rich church\n",
@@ -196,8 +196,8 @@ public class ActiveCards : MonoBehaviour
             "Some men fear that\n" +
             "a demon lurks in the\n" +
             "shadows waiting for\n" +
-            "the night to settle.\n" +
-            "we should leave a" +
+            "the night to settle in.\n" +
+            "We should leave a" +
             "gift and sleep\n" +
             "somewhere else.\n",
 
@@ -214,8 +214,8 @@ public class ActiveCards : MonoBehaviour
             "sacred grave of the\n" +
             "old ways. We are\n" +
             "Christians now,\n" +
-            "But some of your men\n" +
-            "are not and wish to\n" +
+            "but some of your men\n" +
+            "are not, and wish to\n" +
             "pray.\n",
 
             "Chanted an old\n" +
@@ -227,13 +227,13 @@ public class ActiveCards : MonoBehaviour
 
             "Combat", "English Patrol",
 
-            "Your men found an\n" +
-            "well armed patroll.\n" +
+            "Your men found a\n" +
+            "well armed patrol.\n" +
             "Your men are ready\n" +
             "to die in glorious\n" +
             "battle\n",
 
-            "Fought Saxons pigs\n",
+            "Fought Saxon pigs\n",
 
             1, 3),
     
@@ -241,13 +241,13 @@ public class ActiveCards : MonoBehaviour
 
             "Combat", "English Army",
 
-            "Your men found an\n" +
-            "well rounded Earl army.\n" +
+            "Your men found a\n" +
+            "well-rounded Earl's army.\n" +
             "He is probably answering\n" +
-            "Harolds call. We should\n" +
+            "Harold's call. We should\n" +
             "fight them here and now.\n",
 
-            "Fought Saxons pigs\n",
+            "Fought Saxon pigs\n",
 
             1, 3),
     
@@ -260,7 +260,7 @@ public class ActiveCards : MonoBehaviour
             "decisions and wants\n" +
             "to challange you.\n",
 
-            "Tought a Norseman\n" +
+            "Taught a Norseman\n" +
             "his place\n",
 
             3, 0),
@@ -269,7 +269,7 @@ public class ActiveCards : MonoBehaviour
 
             "Honor", "Meet your king",
 
-            "His Highness, Hadrada,\n" +
+            "His Highness, Hardrada,\n" +
             "granted you an audience.\n" +
             "You should bring gifts.\n",
 
@@ -284,7 +284,7 @@ public class ActiveCards : MonoBehaviour
             "Your brother, Balos, is\n" +
             "pinned down by Saxons.\n" +
             "He could use a hand.\n" +
-            "In exchange he will.\n" +
+            "In exchange he will\n" +
             "give us part of the\n" +
             "loot\n",
 
@@ -301,7 +301,7 @@ public class ActiveCards : MonoBehaviour
             "Your men found an old\n" +
             "treasure burried\n" +
             "under an old oak.\n" +
-            "On a closer look you\n" +
+            "On a closer look, you\n" +
             "find an old inscription:\n" +
             "a curse.\n",
 

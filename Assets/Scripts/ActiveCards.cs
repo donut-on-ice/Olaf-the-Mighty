@@ -13,7 +13,12 @@ public class ActiveCards : MonoBehaviour
     private TextMesh tagLeft, tagMiddle, tagRight;
     private Renderer tagLeftR, tagMiddleR, tagRightR;
 
-    static Material[] FACES;
+	public static int men, morale, food, loot;
+
+	Ray ray;
+	RaycastHit hit;
+
+	static Material[] FACES;
     static Material[] FONTS;
 
     static GameEvent[] gameEvents;
@@ -41,275 +46,358 @@ public class ActiveCards : MonoBehaviour
             Resources.Load<Material>("Fonts/BrightRed Text"),
             Resources.Load<Material>("Fonts/BrightBlue Text")
         };
-        
-        gameEvents = new GameEvent[] {
+
+		gameEvents = new GameEvent[] {
     /* 000 */new GameEvent(),
 
     /* 001 */new GameEvent(0, 0, 5, -20,
 
-            "Trade", "Local Market",
+			"Trade", "Local Market",
 
-            "The nearby villagers\n" +
-            "have gathered to sell\n" +
-            "their goods.",
+			"The nearby villagers\n" +
+			"have gathered to sell\n" +
+			"their goods.",
 
-            "Bought some" +
-            "food for loot",
+			"Bought some" +
+			"food for loot",
 
-            5, 3),
+			5, 3),
 
     /* 002 */new GameEvent(2, -10, 0, 0,
 
-            "Axes", "Outlaws",
+			"Axes", "Outlaws",
 
-            "Some criminals want\n" +
-            "to redeem themselves\n" +
-            "in the upcoming raid.\n" +
-            "Still, your men may\n" +
-            "not be too keen about\n" +
-            "it.",
+			"Some criminals want\n" +
+			"to redeem themselves\n" +
+			"in the upcoming raid.\n" +
+			"Still, your men may\n" +
+			"not be too keen about\n" +
+			"it.",
 
-            "Hired criminals",
+			"Hired criminals",
 
-            2, 0),
+			2, 0),
 
     /* 003 */new GameEvent(3, -15, 0, 0,
 
-            "Axes", "Outlaws",
+			"Axes", "Outlaws",
 
-            "Some criminals want\n" +
-            "to redeem themselves\n" +
-            "in the upcoming raid.\n" +
-            "Still, your men may\n" +
-            "not be too keen about\n" +
-            "it.",
+			"Some criminals want\n" +
+			"to redeem themselves\n" +
+			"in the upcoming raid.\n" +
+			"Still, your men may\n" +
+			"not be too keen about\n" +
+			"it.",
 
-            "Hired criminals",
+			"Hired criminals",
 
-            2, 0),
+			2, 0),
 
     /* 004 */new GameEvent(4, -20, 0, 0,
 
-            "Axes", "Outlaws",
+			"Axes", "Outlaws",
 
-            "Some criminals want\n" +
-            "to redeem themselves\n" +
-            "in the upcoming raid.\n" +
-            "Still, your men may\n" +
-            "not be too keen about\n" +
-            "it.",
+			"Some criminals want\n" +
+			"to redeem themselves\n" +
+			"in the upcoming raid.\n" +
+			"Still, your men may\n" +
+			"not be too keen about\n" +
+			"it.",
 
-            "Hired criminals",
+			"Hired criminals",
 
-            2, 0),
+			2, 0),
 
     /* 005 */new GameEvent(3, 0, 0, -15,
 
-            "Swords", "Mercenaries",
+			"Swords", "Mercenaries",
 
-            "Old and fearsome\n" +
-            "warriors answered the" +
-            "call to arms. They won't\n" +
-            "be cheap.\n",
+			"Old and fearsome\n" +
+			"warriors answered the" +
+			"call to arms. They won't\n" +
+			"be cheap.\n",
 
-            "Hired Mercenaries",
+			"Hired Mercenaries",
 
-            2, 0),
+			2, 0),
 
     /* 006 */new GameEvent(4, 0, 0, -20,
 
-            "Swords", "Mercenaries",
+			"Swords", "Mercenaries",
 
-            "Old and fearsome\n" +
-            "warriors answered the" +
-            "call to arms. They won't\n" +
-            "be cheap.\n",
+			"Old and fearsome\n" +
+			"warriors answered the" +
+			"call to arms. They won't\n" +
+			"be cheap.\n",
 
-            "Hired Mercenaries",
+			"Hired Mercenaries",
 
-            2, 0),
+			2, 0),
 
     /* 007 */new GameEvent(5, 0, 0, -25,
 
-            "Swords", "Mercenaries",
+			"Swords", "Mercenaries",
 
-            "Old and fearsome\n" +
-            "warriors answered the" +
-            "call to arms. They won't\n" +
-            "be cheap.\n",
+			"Old and fearsome\n" +
+			"warriors answered the" +
+			"call to arms. They won't\n" +
+			"be cheap.\n",
 
-            "Hired Mercenaries",
+			"Hired Mercenaries",
 
-            2, 0),
+			2, 0),
 
     /* 008 */new GameEvent(1, 10, 0, 0,
 
-            "Champ", "Eldric the Young",
+			"Champ", "Eldric the Young",
 
-            "Eldric, the new\n" +
-            "champion of Ultah\n" +
-            "wants to join your\n" +
-            "ranks. Your men think\n" +
-            "highly of him\n",
+			"Eldric, the new\n" +
+			"champion of Ultah\n" +
+			"wants to join your\n" +
+			"ranks. Your men think\n" +
+			"highly of him\n",
 
-            "Joined forces\n" +
-            "with Eldric the\n" +
-            "Young",
+			"Joined forces\n" +
+			"with Eldric the\n" +
+			"Young",
 
-            7, 3),
+			7, 3),
 
     /* 009 */new GameEvent(-5, 40, 0, 25,
 
-            "Raid", "English Outpost",
+			"Raid", "English Outpost",
 
-            "Local English Earl\n" +
-            "tries to gather some\n" +
-            "forces. Seems like a\n" +
-            "good time to surprise\n" +
-            "them. For glory!\n",
+			"Local English Earl\n" +
+			"tries to gather some\n" +
+			"forces. Seems like a\n" +
+			"good time to surprise\n" +
+			"them. For glory!\n",
 
-            "Raided some\n" +
-            "English dogs\n",
+			"Raided some\n" +
+			"English dogs\n",
 
-            4, 2),
+			4, 2),
 
     /* 010 */new GameEvent(-5, -5, 20, 75,
 
-            "Raid", "Christian Church",
+			"Raid", "Christian Church",
 
-            "Even though most of\n" +
-            "us are Christians,\n" +
-            "this Saxon church\n" +
-            "holds many riches,\n" +
-            "too many for a man of\n" +
-            "God.",
+			"Even though most of\n" +
+			"us are Christians,\n" +
+			"this Saxon church\n" +
+			"holds many riches,\n" +
+			"too many for a man of\n" +
+			"God.",
 
-            "Raided some\n" +
-            "rich church\n",
+			"Raided some\n" +
+			"rich church\n",
 
-            8, 2),
+			8, 2),
     
     /* 011 */new GameEvent(0, 0, -10, -25,
 
-            "Myth", "Old stories",
+			"Myth", "Old stories",
 
-            "Some men fear that\n" +
-            "a demon lurks in the\n" +
-            "shadows waiting for\n" +
-            "the night to settle in.\n" +
-            "We should leave a" +
-            "gift and sleep\n" +
-            "somewhere else.\n",
+			"Some men fear that\n" +
+			"a demon lurks in the\n" +
+			"shadows waiting for\n" +
+			"the night to settle in.\n" +
+			"We should leave a" +
+			"gift and sleep\n" +
+			"somewhere else.\n",
 
-            "Left gifts for\n" +
-            "an old demon\n",
+			"Left gifts for\n" +
+			"an old demon\n",
 
-            9, 1),
+			9, 1),
 
     /* 012 */new GameEvent(0, 5, -5, 0,
 
-            "Myth", "Old rituals",
+			"Myth", "Old rituals",
 
-            "Your men found a\n" +
-            "sacred grave of the\n" +
-            "old ways. We are\n" +
-            "Christians now,\n" +
-            "but some of your men\n" +
-            "are not, and wish to\n" +
-            "pray.\n",
+			"Your men found a\n" +
+			"sacred grave of the\n" +
+			"old ways. We are\n" +
+			"Christians now,\n" +
+			"but some of your men\n" +
+			"are not, and wish to\n" +
+			"pray.\n",
 
-            "Chanted an old\n" +
-            "prayer",
+			"Chanted an old\n" +
+			"prayer",
 
-            11, 1),
+			11, 1),
 
     /* 013 */new GameEvent(-15, 50, 0, 10,
 
-            "Combat", "English Patrol",
+			"Combat", "English Patrol",
 
-            "Your men found a\n" +
-            "well armed patrol.\n" +
-            "Your men are ready\n" +
-            "to die in glorious\n" +
-            "battle\n",
+			"Your men found a\n" +
+			"well armed patrol.\n" +
+			"Your men are ready\n" +
+			"to die in glorious\n" +
+			"battle\n",
 
-            "Fought Saxon pigs\n",
+			"Fought Saxon pigs\n",
 
-            1, 3),
+			1, 3),
     
     /* 014 */new GameEvent(-40, 100, 20, 15,
 
-            "Combat", "English Army",
+			"Combat", "English Army",
 
-            "Your men found a\n" +
-            "well-rounded Earl's army.\n" +
-            "He is probably answering\n" +
-            "Harold's call. We should\n" +
-            "fight them here and now.\n",
+			"Your men found a\n" +
+			"well-rounded Earl's army.\n" +
+			"He is probably answering\n" +
+			"Harold's call. We should\n" +
+			"fight them here and now.\n",
 
-            "Fought Saxon pigs\n",
+			"Fought Saxon pigs\n",
 
-            1, 3),
+			1, 3),
     
     /* 015 */new GameEvent(-1, 5, 0, 0,
 
-            "Honor", "Hot headed soldier",
+			"Honor", "Hot headed soldier",
 
-            "One of your men\n" +
-            "disagrees with your\n" +
-            "decisions and wants\n" +
-            "to challange you.\n",
+			"One of your men\n" +
+			"disagrees with your\n" +
+			"decisions and wants\n" +
+			"to challange you.\n",
 
-            "Taught a Norseman\n" +
-            "his place\n",
+			"Taught a Norseman\n" +
+			"his place\n",
 
-            3, 0),
+			3, 0),
 
     /* 016 */new GameEvent(0, 20, -5, -25,
 
-            "Honor", "Meet your king",
+			"Honor", "Meet your king",
 
-            "His Highness, Hardrada,\n" +
-            "granted you an audience.\n" +
-            "You should bring gifts.\n",
+			"His Highness, Hardrada,\n" +
+			"granted you an audience.\n" +
+			"You should bring gifts.\n",
 
-            "Met our king\n",
+			"Met our king\n",
 
-            3, 0),
+			3, 0),
 
     /* 017 */new GameEvent(0, 20, -5, -25,
 
-            "Family", "Help your brother",
+			"Family", "Help your brother",
 
-            "Your brother, Balos, is\n" +
-            "pinned down by Saxons.\n" +
-            "He could use a hand.\n" +
-            "In exchange he will\n" +
-            "give us part of the\n" +
-            "loot\n",
+			"Your brother, Balos, is\n" +
+			"pinned down by Saxons.\n" +
+			"He could use a hand.\n" +
+			"In exchange he will\n" +
+			"give us part of the\n" +
+			"loot\n",
 
-            "Helped Balos,\n" +
-            "your little\n" +
-            "brother",
+			"Helped Balos,\n" +
+			"your little\n" +
+			"brother",
 
-            5, 2),
+			5, 2),
 
     /* 018 */new GameEvent(0, -25, 0, 50,
 
-            "Myth", "Elder curse",
+			"Myth", "Elder curse",
 
-            "Your men found an old\n" +
-            "treasure burried\n" +
-            "under an old oak.\n" +
-            "On a closer look, you\n" +
-            "find an old inscription:\n" +
-            "a curse.\n",
+			"Your men found an old\n" +
+			"treasure burried\n" +
+			"under an old oak.\n" +
+			"On a closer look, you\n" +
+			"find an old inscription:\n" +
+			"a curse.\n",
 
-            "Stolen from a\n" +
-            "grave",
+			"Stolen from a\n" +
+			"grave",
 
-            10, 1),
-    };
+			10, 1),
+
+		
+// debugging events
+	
+	/* 019 */new GameEvent(1, 0, 0, 0,
+
+			"q", "Gain one man",
+
+			"",
+
+			"Gained one man",
+
+			5, 0),
+
+	/* 020 */new GameEvent(-1, 0, 0, 0,
+
+			"a", "Lose one man",
+
+			"",
+
+			"Lost one man",
+
+			5, 0),
+
+	/* 021 */new GameEvent(0, 5, 0, 0,
+
+			"w", "Gain 5 morale",
+
+			"",
+
+			"Gained 5 morale",
+
+			5, 0),
+
+	/* 022 */new GameEvent(0, -5, 0, 0,
+
+			"s", "Lose 5 morale",
+
+			"",
+
+			"Lost 5 morale",
+
+			5, 0),
+
+	/* 023 */new GameEvent(0, 0, 5, 0,
+
+			"e", "Gain 5 food",
+
+			"",
+
+			"Gained 5 food",
+
+			5, 0),
+
+	/* 024 */new GameEvent(0, 0, -5, 0,
+
+			"d", "Lose 5 food",
+
+			"",
+
+			"Lost 5 food",
+
+			5, 0),
+
+	/* 025 */new GameEvent(0, 0, 0, 100,
+
+			"r", "Gain 100 loot",
+
+			"",
+
+			"Gained 100 loot",
+
+			5, 0),
+
+	/* 026 */new GameEvent(0, 0, 0, -100,
+
+			"f", "Lose 100 loot",
+
+			"",
+
+			"Lost 100 loot",
+
+			5, 0),
+	};
 
 
         cardLeft = GameObject.Find("Card Left");
@@ -406,7 +494,7 @@ public class ActiveCards : MonoBehaviour
 		ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 		if (Physics.Raycast(ray, out hit))
 		{
-			//print(hit.collider.name);
+			print(hit.collider.name);			// debugging
 			if(hit.collider.name == faceLeft.name) {
 
 				// stuff on hover 
@@ -450,10 +538,7 @@ public class ActiveCards : MonoBehaviour
 			}
 		}
 	}
-
-	Ray ray;
-	RaycastHit hit;
-
+	
 	public class GameEvent
     {
         public int ArmySize { get; set; }

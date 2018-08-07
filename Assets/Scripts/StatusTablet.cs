@@ -9,20 +9,18 @@ public class StatusTablet : MonoBehaviour {
     private TextMesh foodNr;
     private TextMesh lootNr;
     
-    private int armySize;
-    private int armyMorale;
-    private int food;
-    private int loot;
+    private static int armySize;
+    private static int armyMorale;
+    private static int food;
+    private static int loot;
 
-    private bool toUpdate;
-
-    public void UpdateStatus (ActiveCards.GameEvent ev)
+    private static bool toUpdate;
+    
+    public static void UpdateStatus (ActiveCards.GameEvent ev)
     {
         armySize = armySize + ev.ArmySize;
         if (armySize > 50)
             armySize = 50;
-        else if (armySize < 0)
-            armySize = 0;
 
         armyMorale = armyMorale + ev.ArmyMorale;
         if (armyMorale > 50)
@@ -30,10 +28,20 @@ public class StatusTablet : MonoBehaviour {
         else if (armyMorale < 0)
             armyMorale = 0;
 
-        food += ev.Food;
+        food += ev.Food - armySize;
+        if (food < 0)
+            food = 0;
 
         loot += ev.Loot;
+        if (loot < 0)
+            loot = 0;
 
+        if (armyMorale == 0)
+            armySize--;
+
+        if (food == 0)
+            armySize--;
+        
         toUpdate = true;
     }
 
@@ -58,8 +66,63 @@ public class StatusTablet : MonoBehaviour {
 	
 	void Update ()
     {
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            armySize++;
+            toUpdate = true; 
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            armySize--;
+            toUpdate = true;
+        }
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            armyMorale += 5;
+            toUpdate = true;
+        }
+        if (Input.GetKeyDown(KeyCode.S))
+        {
+            armyMorale -= 5;
+            toUpdate = true;
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            food += 10;
+            toUpdate = true;
+        }
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            food -= 10;
+            toUpdate = true;
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            loot += 100;
+            toUpdate = true;
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            loot -= 100;
+            toUpdate = true;
+        }
+
         if (toUpdate)
         {
+
+
+
+
+            if (armySize <= 0)
+            {
+                Scroll.UpdateScrollLost();
+            }
+            else if (loot >= 1000)
+            {
+                Scroll.UpdateScrollWin();
+            }
+
             sizeNr.text = armySize.ToString();
             moraleNr.text = armyMorale.ToString();
             foodNr.text = food.ToString();

@@ -7,21 +7,34 @@ public class Scroll : MonoBehaviour {
     private TextMesh titleText;
     private TextMesh descriptionText;
 
-    private string title;
-    private string description;
+    private static string title;
+    private static string description;
 
-    private bool toUpdate;
-
-    public void UpdateScroll (ActiveCards.GameEvent ev)
+    private static bool toUpdate;
+    
+    public static void UpdateScroll (ActiveCards.GameEvent ev)
     {
         title = ev.Title;
         description = ev.Description;
         toUpdate = true;
     }
 
-    public void ClearScroll (ActiveCards.GameEvent ev)
+    public static void ClearScroll ()
     {
         title = "";
+        description = "";
+        toUpdate = true;
+    }
+
+    public static void UpdateScrollLost(){
+        title = "You lost";
+        description = "";
+        toUpdate = true;
+    }
+
+    public static void UpdateScrollWin()
+    {
+        title = "You won";
         description = "";
         toUpdate = true;
     }

@@ -6,11 +6,11 @@ public class LogTablet : MonoBehaviour {
     
     private TextMesh logText;
 
-    private string logEntry;
+    private static string logEntry;
 
-    private bool toUpdate;
+    private static bool toUpdate;
 
-    public void AddEntry (ActiveCards.GameEvent ev)
+    public static void AddEntry (ActiveCards.GameEvent ev)
     {
         logEntry = ev.LogEntry;
         toUpdate = true;
@@ -30,7 +30,7 @@ public class LogTablet : MonoBehaviour {
     {
         if (toUpdate)
         {
-            logText.text += logEntry + "\n\n";
+            logText.text = logEntry + "\n\n" + logText.text;
             toUpdate = false;
         }
 	}
